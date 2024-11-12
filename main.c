@@ -78,7 +78,7 @@ void check_buttons_and_display(void){
         display_text("XHRDLI18", 8); // Display text "XHRDLI18" when button SW4 is pressed
     }
     else if(!(GPIOE_PDIR & BTN_SW5)){
-        display_text("AHOJ", 4);    // Display text "AHOJ" when button SW5 is pressed
+        display_text("HELLO WORLD", 11);    // Display text "AHOJ" when button SW5 is pressed
     }
     else if(!(GPIOE_PDIR & BTN_SW6)){
         display_text("0123", 4);    // Display text "0123" when button SW6 is pressed
