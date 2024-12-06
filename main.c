@@ -83,7 +83,7 @@ void pixel_on(unsigned int x, unsigned int y){
         row_select(y);
     }
 
-    delay(1, 500);
+    delay(1, 2000);
 }
 
 
@@ -98,7 +98,6 @@ void showField(char field[HEIGHT][MAX], int length, int offset){
 
             // Check if the value in field is 1 (pixel is on)
             if (field[y][x] == '1') {
-                // Turn on the pixel
                 pixel_on(column, row);
             }
         }
@@ -268,17 +267,14 @@ void createString(char field[HEIGHT][MAX], char *text, int len){
 
 
 void display_text(const char *text, int len){
-    int maxLen = len * 8; // Max length of field of characters based on the lenght of the text (8 pixels per character)
-    int forLoopLimit = maxLen * 2 + 20;
+    int maxLen = len * 8; // Max length of field of characters based on the lenght of the text
+    int forLoopLimit = maxLen * 2 + 16;
     char field[HEIGHT][MAX]; // 2D array for the field of characters
     createString(field, text, len); // Create the field of characters
 
     // Outer loop for the animation
     for (int i = 0; i < forLoopLimit; i++) {
-    	// Inner loop for the animation
-        for (int k = 0; k < 12; k++) {
-            showField(field, maxLen, i); // Show the field of characters with offset i
-        }
+    	showField(field, maxLen, i); // Show the field of characters with offset i
     }
 }
 
@@ -321,7 +317,7 @@ int main(void){
     uint32_t pins[] = {10, 12, 27, 26, 11};
 
     // Set pins of PORTE as GPIO
-    for (int i = 0; i < sizeof(pins) / sizeof(pins[0]); i++) {
+    for (int i = 0; i < 5; i++) {
         PORTE->PCR[pins[i]] = PORT_PCR_MUX(0x01); // SW2, SW3, SW4, SW5, SW6
     }
 
@@ -331,14 +327,18 @@ int main(void){
         } else if (!(GPIOE_PDIR & BTN_SW3)) {
             display_text("PROJEKT", 7);    // Display text "PROJEKT" when SW3 button is pressed
         } else if (!(GPIOE_PDIR & BTN_SW4)) {
-            display_text("IMP", 3);         // Display text "IMP" when SW4 button is pressed
+            display_text("JAKUB", 5);         // Display text "JAKUB" when SW4 button is pressed
         } else if (!(GPIOE_PDIR & BTN_SW5)) {
-            display_text("HELLO", 5);         // Display text "HELLO" when SW5 button is pressed
+            display_text("HRDLICKA", 8);         // Display text "HRDLICKA" when SW5 button is pressed
         } else if (!(GPIOE_PDIR & BTN_SW6)) {
-            display_text("0123", 4);     // Display text "0123" when SW6 button is pressed
+            display_text("0123456", 7);     // Display text "0123456" when SW6 button is pressed
         }
     }
 
     // Infinite loop, the program will never reach this point
     return 0;
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// EOF
+////////////////////////////////////////////////////////////////////////////////
