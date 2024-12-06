@@ -268,7 +268,7 @@ void createString(char field[HEIGHT][MAX], char *text, int len){
 
 void display_text(const char *text, int len){
     int maxLen = len * 8; // Max length of field of characters based on the lenght of the text
-    int forLoopLimit = maxLen * 2 + 16;
+    int forLoopLimit = (maxLen * 2) + 16;
     char field[HEIGHT][MAX]; // 2D array for the field of characters
     createString(field, text, len); // Create the field of characters
 
