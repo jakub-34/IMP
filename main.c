@@ -87,7 +87,7 @@ void pixel_on(unsigned int x, unsigned int y){
 }
 
 
-void showField(char field[HEIGHT][MAX], int length, int offset){
+void show_field(char field[HEIGHT][MAX], int length, int offset){
 	// Loop for each column
     for (int x = 0; x < length; x++) {
     	// Loop for each row
@@ -108,7 +108,7 @@ void showField(char field[HEIGHT][MAX], int length, int offset){
 }
 
 
-void createString(char field[HEIGHT][MAX], char *text, int len){
+void create_string(char field[HEIGHT][MAX], char *text, int len){
     int fieldLength = 0;
     // Loop for each character in the text
     for (int i = 0; i < len; i++) {
@@ -266,15 +266,15 @@ void createString(char field[HEIGHT][MAX], char *text, int len){
 }
 
 
-void display_text(const char *text, int len){
+void display_text(char *text, int len){
     int maxLen = len * 8; // Max length of field of characters based on the lenght of the text
     int forLoopLimit = (maxLen * 2) + 16;
     char field[HEIGHT][MAX]; // 2D array for the field of characters
-    createString(field, text, len); // Create the field of characters
+    create_string(field, text, len); // Create the field of characters
 
     // Outer loop for the animation
     for (int i = 0; i < forLoopLimit; i++) {
-    	showField(field, maxLen, i); // Show the field of characters with offset i
+    	show_field(field, maxLen, i); // Show the field of characters with offset i
     }
 }
 
